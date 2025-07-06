@@ -8,7 +8,7 @@ function verifyToken(req, res, next) {
   if (!token) return res.status(401).json({ msg: "Acesso negado!" });
 
   try {
-    const secret = process.env.SECRET;
+    const secret = process.env.SECRET_KEY;
     const decoded = jwt.verify(token, secret);
     req.usuarioId = decoded.id; // aqui salva o id do usuário no req
     next();
