@@ -59,6 +59,11 @@ spec:
             - name: MONGO_URL # Variável de ambiente que sua API usa
               # O valor aponta para o serviço do MongoDB que criamos acima
               value: "mongodb://mongo-service:27017/Estoque"
+            - name: SECRET_KEY # O nome da variável que seu código espera
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret # O nome do Secret que criamos no Passo 1
+                  key: SECRET_KEY # A chave dentro do Secret que contém o valor
 ---
 # --- Serviço para a API ---
 # Cria um "endereço" interno para que o Frontend possa encontrar a API
