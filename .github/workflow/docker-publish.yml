@@ -1,0 +1,31 @@
+name: CI - Publicar Imagem Docker da API
+
+# Este workflow roda em todo push para a branch main
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Faz o checkout do código do seu repositório
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 2. Faz o login no Docker Hub
+      - name: Login no Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Faz a build e o push da imagem
+      - name: Build e push da imagem da API
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          # Altere 'seu-usuario' para seu username do Docker Hub
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/estoque-api:latest
