@@ -144,7 +144,7 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 // Conexão com o MongoDB
-mongoose.connect("mongodb://localhost:27017/Estoque").then(() => {
+mongoose.connect(process.env.MONGO_URL).then(() => {
   app.listen(5000);
   console.log("Conectado ao MongoDB! 🚀");
   console.log("Servidor rodando na porta 3000! 🚀");
