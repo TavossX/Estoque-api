@@ -112,4 +112,4 @@ spec:
     - protocol: TCP
       port: 80 # Porta do serviço
       targetPort: 80 # Porta dos contêineres do frontend
-      # nodePort: 30001 # Opcional: você pode sugerir uma porta
+      nodePort: 30001
